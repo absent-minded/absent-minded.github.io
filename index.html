@@ -292,10 +292,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h1><h2 id="数据库的好处"><a href="#数据库的好处" class="headerlink" title="数据库的好处"></a>数据库的好处</h2><p>1.可以持久化数据到本地<br>2.结构化查询</p>
+<p><img src="/2021/02/01/mysql/1612191847233.png" alt="1612191847233"></p>
 <h2 id="数据库的常见概念"><a href="#数据库的常见概念" class="headerlink" title="数据库的常见概念"></a>数据库的常见概念</h2><p>1.DB：数据库，存储数据的容器<br>2.DBMS：数据库管理系统，又称为数据库软件或数据库产品，用于创建或管理DB<br>3.SQL：结构化查询语言，用于和数据库通信的语言，不是某个数据库软件特有，几乎所有主流数据库软件通用</p>
 <h2 id="数据库存储数据的特点"><a href="#数据库存储数据的特点" class="headerlink" title="数据库存储数据的特点"></a>数据库存储数据的特点</h2><p>1.数据存放在表中，然后表再放到库中<br>2.一个库中可有多张表，每张表具有唯一表名来标识自己<br>3.表中有一个或多个列，列称为字段，相当于java中的属性<br>4.表中每行数据，相当于java中的对象</p>
 <h2 id="常见数据库管理系统"><a href="#常见数据库管理系统" class="headerlink" title="常见数据库管理系统"></a>常见数据库管理系统</h2><p>mysql，Oracle，db2，SQL server</p>
-<h1 id="Mysql架构"><a href="#Mysql架构" class="headerlink" title="Mysql架构"></a>Mysql架构</h1><p><img src="img/image-1606653464299.png" alt="img"></p>
+<h1 id="Mysql架构"><a href="#Mysql架构" class="headerlink" title="Mysql架构"></a>Mysql架构</h1><p><img src="/2021/02/01/mysql/image-1606653464299.png" alt="img"></p>
 <p>分成Server层和存储引擎层两部分</p>
 <h2 id="Server层"><a href="#Server层" class="headerlink" title="Server层"></a>Server层</h2><ul>
 <li>连接器：负责跟客户端建立连接，获取权限及管理连接</li>
@@ -467,16 +468,16 @@
 <p>作用：</p>
 <p>　　保存了事务发生之前的数据的一个版本，可以用于回滚，同时可以提供多版本并发控制下的读（MVCC），也即非锁定读</p>
 <p>   想要保证事务的原子性，就需要在异常发生时，对已经执行的操作进行<strong>回滚</strong>，而在 MySQL 中，恢复机制是通过<em>回滚日志</em>（undo log）实现的，所有事务进行的修改都会先记录到这个回滚日志中，然后在对数据库中的对应行进行写入。</p>
-<p><img src="img/image.png" alt="img"></p>
+<p><img src="/2021/02/01/mysql/image.png" alt="img"></p>
 <p>这个过程其实非常好理解，为了能够在发生错误时撤销之前的全部操作，肯定是需要将之前的操作都记录下来的，这样在发生错误时才可以回滚。</p>
 <p>回滚日志除了能够在发生错误或者用户执行 ROLLBACK 时提供回滚相关的信息，它还能够在整个系统发生崩溃、数据库进程直接被杀死后，当用户再次启动数据库进程时，还能够立刻通过查询回滚日志将之前未完成的事务进行回滚，这也就需要回滚日志必须先于数据持久化到磁盘上，是我们需要先写日志后写数据库的主要原因。</p>
 <p>回滚日志并不能将数据库物理地恢复到执行语句或者事务之前的样子；它是逻辑日志，当回滚日志被使用时，它只会按照日志<strong>逻辑地</strong>将数据库中的修改撤销掉看，可以<strong>理解</strong>为，我们在事务中使用的每一条 INSERT 都对应了一条 DELETE，每一条 UPDATE 也都对应一条相反的 UPDATE 语句。</p>
-<p><img src="img/image-1606650730001.png" alt="img"></p>
+<p><img src="/2021/02/01/mysql/image-1606650730001.png" alt="img"></p>
 <p><strong>重做日志</strong></p>
 <p>作用：</p>
 <p>　　确保事务的持久性。防止在发生故障的时间点，尚有脏页未写入磁盘，在重启mysql服务的时候，根据redo log进行重做，从而达到事务的持久性这一特性。</p>
 <p>重做日志由两部分组成，一是内存中的重做日志缓冲区，因为重做日志缓冲区在内存中，所以它是易失的，另一个就是在磁盘上的重做日志文件，它是持久的。</p>
-<p><img src="img/image-1606651189480.png" alt="img"></p>
+<p><img src="/2021/02/01/mysql/image-1606651189480.png" alt="img"></p>
 <ul>
 <li><p>当我们在一个事务中尝试对数据进行修改时，它会先将数据从磁盘读入内存，并更新内存中缓存的数据，然后生成一条重做日志并写入重做日志缓存，当事务真正提交时，MySQL 会将重做日志缓存中的内容刷新到重做日志文件，再将内存中的数据更新到磁盘上，图中的第 4、5 步就是在事务提交时执行的。</p>
 </li>
@@ -678,14 +679,14 @@
 <h3 id="举例说明"><a href="#举例说明" class="headerlink" title="举例说明"></a>举例说明</h3><p>1.插入数据（insert）:记录的版本号即当前事务的版本号</p>
 <p>执行一条数据语句：insert into testmvcc values(1,”test”);</p>
 <p>假设事务id为1，那么插入后的数据行如下：</p>
-<p><img src="img/1536286392011332dc79980.jpg" alt="Mysql中MVCC的使用及原理详解"></p>
+<p><img src="/2021/02/01/mysql/1536286392011332dc79980.jpg" alt="Mysql中MVCC的使用及原理详解"></p>
 <p>2、在更新操作的时候，采用的是先标记旧的那行记录为已删除，并且删除版本号是事务版本号，然后插入一行新的记录的方式。</p>
 <p>比如，针对上面那行记录，事务Id为2 要把name字段更新</p>
 <p>update table set name= ‘new_value’ where id=1;</p>
-<p><img src="img/15362864790262a85896e55.jpg" alt="Mysql中MVCC的使用及原理详解"></p>
+<p><img src="/2021/02/01/mysql/15362864790262a85896e55.jpg" alt="Mysql中MVCC的使用及原理详解"></p>
 <p>3、删除操作的时候，就把事务版本号作为删除版本号。比如</p>
 <p>delete from table where id=1;</p>
-<p><img src="img/15362865324150dfbc7bf66.jpg" alt="Mysql中MVCC的使用及原理详解"></p>
+<p><img src="/2021/02/01/mysql/15362865324150dfbc7bf66.jpg" alt="Mysql中MVCC的使用及原理详解"></p>
 <p>4、查询操作：</p>
 <p>从上面的描述可以看到，在查询时要符合以下两个条件的记录才能被事务查询出来：</p>
 <ol>
@@ -705,7 +706,7 @@
 <p>4.通过以上总结，可知，MVCC主要作用于事务性的，有行锁控制的数据库模型。</p>
 </blockquote>
 <h2 id="锁"><a href="#锁" class="headerlink" title="锁"></a>锁</h2><h3 id="锁的粒度"><a href="#锁的粒度" class="headerlink" title="锁的粒度"></a>锁的粒度</h3><p>数据库中锁存在存储结构，锁的层次从最高层数据库开始，通过表和页向下到达最底层的行。</p>
-<p><img src="img/image-1606655993938.png" alt="img"></p>
+<p><img src="/2021/02/01/mysql/image-1606655993938.png" alt="img"></p>
 <p>引入多粒度的锁是否存在问题呢？</p>
 <p> <strong>首先，使用相同粒度的锁是不会存在问题的，即两个事务均使用表锁或者行锁。</strong></p>
 <blockquote>
@@ -730,7 +731,7 @@
 </ul>
 <p><strong>加锁规则：</strong>低粒度的资源加锁高粒度自动加上意向锁，同时是否加锁成功遵循以下规定。</p>
 <p>不同事务间请求锁兼容方式：</p>
-<p><img src="img/image-1606656173512.png" alt="img"></p>
+<p><img src="/2021/02/01/mysql/image-1606656173512.png" alt="img"></p>
 <p><strong>分析引入意向锁后场景分析：</strong>事务A想修改某行，需要获取该行的排他锁（X）。则会先获取所在page的意向排他锁（IX）所在表的意向排他锁（IX）。此时假定没有其他事务占有锁，则事务A获取成功。接下来事务B在该表添加字段，需要获取该表的排他锁（X），此时由于事务A拥有该表的意向排他锁(IX)，即处于请求锁模式（X）和当前锁模式（IX）不能兼容，则事务B不能获取表的排他锁（X）,此时无法添加。</p>
 <h3 id="粒度锁"><a href="#粒度锁" class="headerlink" title="粒度锁"></a>粒度锁</h3><p><strong>全局锁：</strong></p>
 <ul>
@@ -757,7 +758,7 @@
 <h3 id="乐观锁和悲观锁"><a href="#乐观锁和悲观锁" class="headerlink" title="乐观锁和悲观锁"></a>乐观锁和悲观锁</h3><h4 id="乐观锁"><a href="#乐观锁" class="headerlink" title="乐观锁"></a>乐观锁</h4><ul>
 <li>总是假设最好的情况，每次去拿数据的时候都认为别人不会修改，所以不会上锁，但是在更新的时候会判断一下在此期间别人有没有去更新这个数据，适合多读场景</li>
 <li>用数据版本（Version）记录机制实现，当读取数据时，将version字段的值一同读出，数据每更新一次，对此version值加1。当我们提交更新的时候，判断数据库表对应记录的当前版本信息与第一次取出来的version值进行比对，如果数据库表当前版本号与第一次取出来的version值相等，则予以更新，否则认为是过期数据</li>
-<li><img src="img/1608011568265.png" alt="1608011568265"></li>
+<li><img src="/2021/02/01/mysql/1608011568265.png" alt="1608011568265"></li>
 </ul>
 <p>如上图所示，如果更新操作顺序执行，则数据的版本（version）依次递增，不会产生冲突。但是如果发生有不同的业务操作对同一版本的数据进行修改，那么，先提交的操作（图中B）会把数据version更新为2，当A在B之后提交更新时发现数据的version已经被修改了，那么A的更新操作会失败。 </p>
 <h4 id="悲观锁"><a href="#悲观锁" class="headerlink" title="悲观锁"></a>悲观锁</h4><ul>
@@ -776,7 +777,7 @@
 <h3 id="2-通过修改表结构创建索引"><a href="#2-通过修改表结构创建索引" class="headerlink" title="2. 通过修改表结构创建索引"></a>2. 通过修改表结构创建索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">ADD</span> INDEX index_name(col_name);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="3-创建表时直接指定索引"><a href="#3-创建表时直接指定索引" class="headerlink" title="3. 创建表时直接指定索引"></a>3. 创建表时直接指定索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> <span class="keyword">TABLE</span> table_name (</span><br><span class="line">    ID <span class="type">INT</span> <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    col_name <span class="type">VARCHAR</span> (<span class="number">16</span>) <span class="keyword">NOT</span> <span class="keyword">NULL</span>,</span><br><span class="line">    INDEX index_name (col_name)</span><br><span class="line">);</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h3 id="4-删除索引"><a href="#4-删除索引" class="headerlink" title="4. 删除索引"></a>4. 删除索引</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">--直接删除索引</span></span><br><span class="line"><span class="keyword">DROP</span> INDEX index_name <span class="keyword">ON</span> table_name;</span><br><span class="line"></span><br><span class="line"><span class="comment">--修改表结构删除索引</span></span><br><span class="line"><span class="keyword">ALTER</span> <span class="keyword">TABLE</span> table_name <span class="keyword">DROP</span> INDEX index_name;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="索引实现"><a href="#索引实现" class="headerlink" title="索引实现"></a>索引实现</h2><h3 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h3><p><img src="img/image-1606722932902.png" alt="img"></p>
+<h2 id="索引实现"><a href="#索引实现" class="headerlink" title="索引实现"></a>索引实现</h2><h3 id="B-树索引"><a href="#B-树索引" class="headerlink" title="B+树索引"></a>B+树索引</h3><p><img src="/2021/02/01/mysql/image-1606722932902.png" alt="img"></p>
 <ul>
 <li>多叉平衡树</li>
 <li>对数时间复杂度</li>
