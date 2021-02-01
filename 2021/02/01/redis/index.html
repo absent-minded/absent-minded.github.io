@@ -349,6 +349,22 @@
   
 
   
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://example.com/2021/02/01/redis/",
+  owner: 'absent-minded',
+  repo: 'git@github.com:absent-minded/blog_comments.git',
+  oauth: {
+    client_id: '1997fd10ba92ca0b9b4e',
+    client_secret: 'f8eb7b7070a8ec438a54ddd696d48689e4eec627',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
   
     <div id="gitalk-container"></div>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
@@ -361,7 +377,7 @@ var gitalk = new Gitalk({
   clientSecret: 'f8eb7b7070a8ec438a54ddd696d48689e4eec627',
   repo: 'git@github.com:absent-minded/blog_comments.git',
   owner: 'absent-minded',
-  admin: ['watermelon'],
+  admin: ['absent-minded'],
   id: md5(window.location.pathname),
   distractionFreeMode: true
 })
