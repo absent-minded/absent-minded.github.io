@@ -365,6 +365,22 @@
   
 
   
+  <div id="gitment-ctn"></div> 
+<link rel="stylesheet" href="//imsun.github.io/gitment/style/default.css">
+<script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: "http://example.com/2021/02/01/introduce/",
+  owner: 'absent-minded',
+  repo: 'blog-comments',
+  oauth: {
+    client_id: '847cd1f2623298111e87',
+    client_secret: 'c356f124b20b4f33eaed214f15105fef9d9ec55b',
+  },
+})
+gitment.render('gitment-ctn')
+</script>
+  
 
 
           </div>
