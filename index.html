@@ -269,6 +269,216 @@
 
 
   
+    <article id="post-Spring-Cloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/17/Spring-Cloud/">Spring Cloud</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/17/Spring-Cloud/" class="archive-article-date">
+  	<time datetime="2021-02-17T07:57:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-17</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+        <!-- 添加完成 -->
+
+        
+           
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Spring-Cloud-01"><a href="#Spring-Cloud-01" class="headerlink" title="Spring Cloud-01"></a>Spring Cloud-01</h1><h2 id="1-系统架构演变概述"><a href="#1-系统架构演变概述" class="headerlink" title="1. 系统架构演变概述"></a>1. 系统架构演变概述</h2><p><strong>目标</strong>：了解项目架构的演变历程</p>
+<p><strong>小结</strong>：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">graph LR;</span><br><span class="line">1[集中式架构] --&gt; 2[垂直拆分]</span><br><span class="line">2 --&gt; 3[分布式服务]</span><br><span class="line">3 --&gt; 4[SOA面向服务架构]</span><br><span class="line">4 --&gt; 5[微服务架构]</span><br></pre></td></tr></table></figure>
+        
+          <a class="article-more-a" href="/2021/02/17/Spring-Cloud/#more">more >></a>
+        
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">Spring-Cloud</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/后端/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/17/Spring-Cloud/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-Maven高级" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/02/17/Maven%E9%AB%98%E7%BA%A7/">Maven高级</a>
+    </h1>
+  
+
+        
+        <a href="/2021/02/17/Maven%E9%AB%98%E7%BA%A7/" class="archive-article-date">
+  	<time datetime="2021-02-17T07:53:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-17</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+        <!-- 添加完成 -->
+
+        
+           
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Maven高级"><a href="#Maven高级" class="headerlink" title="Maven高级"></a>Maven高级</h2><h2 id="1-maven基础知识回顾"><a href="#1-maven基础知识回顾" class="headerlink" title="1.maven基础知识回顾"></a>1.maven基础知识回顾</h2><h3 id="1-1-maven介绍"><a href="#1-1-maven介绍" class="headerlink" title="1.1 maven介绍"></a>1.1 maven介绍</h3><p>maven 是一个项目管理工具，主要作用是在项目开发阶段对Java项目进行依赖管理和项目构建。</p>
+<p>依赖管理：就是对jar包的管理。通过导入maven坐标，就相当于将仓库中的jar包导入了当前项目中。</p>
+<p>项目构建：通过maven的一个命令就可以完成项目从清理、编译、测试、报告、打包，部署整个过程。</p>
+<p>​              <img src="/2021/02/17/Maven%E9%AB%98%E7%BA%A7/%E5%9B%BE%E7%89%871.png"></p>
+<h3 id="1-2-maven的仓库类型"><a href="#1-2-maven的仓库类型" class="headerlink" title="1.2 maven的仓库类型"></a>1.2 maven的仓库类型</h3><p>1.本地仓库 </p>
+<p>2.远程仓库</p>
+<p>①maven中央仓库（地址：<a target="_blank" rel="noopener" href="http://repo2.maven.org/maven2/%EF%BC%89">http://repo2.maven.org/maven2/）</a></p>
+<p>②maven私服（公司局域网内的仓库，需要自己搭建）</p>
+<p>③其他公共远程仓库（例如apache提供的远程仓库，地址：<a target="_blank" rel="noopener" href="http://repo.maven.apache.org/maven2/%EF%BC%89">http://repo.maven.apache.org/maven2/）</a></p>
+        
+          <a class="article-more-a" href="/2021/02/17/Maven%E9%AB%98%E7%BA%A7/#more">more >></a>
+        
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Maven</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/后端/Java//" class="article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/02/17/Maven%E9%AB%98%E7%BA%A7/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring-Boot" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -398,6 +608,18 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="Mybatis-01"><a href="#Mybatis-01" class="headerlink" title="Mybatis-01"></a>Mybatis-01</h2><h3 id="1-Mybatis简介"><a href="#1-Mybatis简介" class="headerlink" title="1.Mybatis简介"></a>1.Mybatis简介</h3><h4 id="1-1原始jdbc操作（查询数据）"><a href="#1-1原始jdbc操作（查询数据）" class="headerlink" title="1.1原始jdbc操作（查询数据）"></a>1.1原始jdbc操作（查询数据）</h4><p><img src="/2021/02/17/Mybatis/%E5%9B%BE%E7%89%871.png"></p>
+<h4 id="1-2原始jdbc操作（插入数据）"><a href="#1-2原始jdbc操作（插入数据）" class="headerlink" title="1.2原始jdbc操作（插入数据）"></a>1.2原始jdbc操作（插入数据）</h4><p><img src="/2021/02/17/Mybatis/%E5%9B%BE%E7%89%872.png"></p>
+<h4 id="1-3-原始jdbc操作的分析"><a href="#1-3-原始jdbc操作的分析" class="headerlink" title="1.3 原始jdbc操作的分析"></a>1.3 原始jdbc操作的分析</h4><p>原始jdbc开发存在的问题如下：</p>
+<p>①数据库连接创建、释放频繁造成系统资源浪费从而影响系统性能</p>
+<p>②sql 语句在代码中硬编码，造成代码不易维护，实际应用 sql 变化的可能较大，sql 变动需要改变java代码。</p>
+<p>③查询操作时，需要手动将结果集中的数据手动封装到实体中。插入操作时，需要手动将实体的数据设置到sql语句的占位符位置</p>
+<p>应对上述问题给出的解决方案：</p>
+<p>①使用数据库连接池初始化连接资源</p>
+<p>②将sql语句抽取到xml配置文件中</p>
+<p>③使用反射、内省等底层技术，自动将实体与表进行属性与字段的自动映射</p>
+<h4 id="1-4-什么是Mybatis"><a href="#1-4-什么是Mybatis" class="headerlink" title="1.4 什么是Mybatis"></a>1.4 什么是Mybatis</h4><p>mybatis 是一个优秀的基于java的持久层框架，它内部封装了jdbc，使开发者只需要关注sql语句本身，而不需要花费精力去处理加载驱动、创建连接、创建statement等繁杂的过程。</p>
+<p>mybatis通过xml或注解的方式将要执行的各种 statement配置起来，并通过java对象和statement中sql的动态参数进行映射生成最终执行的sql语句。</p>
+<p>最后mybatis框架执行sql并将结果映射为java对象并返回。采用ORM思想解决了实体和数据库映射的问题，对jdbc 进行了封装，屏蔽了jdbc api 底层访问细节，使我们不用与jdbc api 打交道，就可以完成对数据库的持久化操作。</p>
         
           <a class="article-more-a" href="/2021/02/17/Mybatis/#more">more >></a>
         
@@ -779,208 +1001,6 @@
 
 
   
-    <article id="post-经典算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/02/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/">经典算法</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/02/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/" class="archive-article-date">
-  	<time datetime="2021-02-02T09:16:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-02</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-        <!-- 添加完成 -->
-
-        
-           
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本文收录了一些经常用到的算法，可以当作模板来使用，有些算法可以背下来，方便今后直接使用</p>
-        
-          <a class="article-more-a" href="/2021/02/02/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法//" class="article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/算法/常用算法//" class="article-tag-list-link color5">常用算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/02/%E7%BB%8F%E5%85%B8%E7%AE%97%E6%B3%95/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-git" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/02/git/">git</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/02/git/" class="archive-article-date">
-  	<time datetime="2021-02-02T09:15:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-02</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-        <!-- 添加完成 -->
-
-        
-           
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>学习链接：<a target="_blank" rel="noopener" href="https://www.liaoxuefeng.com/wiki/896043488029600/896827951938304">https://www.liaoxuefeng.com/wiki/896043488029600/896827951938304</a></p>
-<h2 id="Git分布式版本控制工具"><a href="#Git分布式版本控制工具" class="headerlink" title="Git分布式版本控制工具"></a>Git分布式版本控制工具</h2><h2 id="1-Git概述"><a href="#1-Git概述" class="headerlink" title="1. Git概述"></a>1. Git概述</h2><h3 id="1-1-Git历史"><a href="#1-1-Git历史" class="headerlink" title="1.1 Git历史"></a>1.1 Git历史</h3><p>Git 诞生于一个极富纷争大举创新的年代。Linux 内核开源项目有着为数众多的参与者。 绝大多数的 Linux 内核维护工作都花在了提交补丁和保存归档的繁琐事务上（1991－2002年间）。 到 2002 年，整个项目组开始启用一个专有的分布式版本控制系统 BitKeeper 来管理和维护代码。</p>
-<p>到了 2005 年，开发 BitKeeper 的商业公司同 Linux 内核开源社区的合作关系结束，他们收回了 Linux 内核社区免费使用 BitKeeper 的权力。 这就迫使 Linux 开源社区（特别是 Linux 的缔造者 Linus Torvalds）基于使用 BitKeeper 时的经验教训，开发出自己的版本系统。 </p>
-        
-          <a class="article-more-a" href="/2021/02/02/git/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/版本控制//" class="article-tag-list-link color5">版本控制</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/版本控制/git//" class="article-tag-list-link color4">git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/02/git/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1153,6 +1173,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Spring-Boot</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Maven</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">Spring-Cloud</a>
               </li>
             
             <div class="clearfix"></div>
