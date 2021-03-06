@@ -269,6 +269,269 @@
 
 
   
+    <article id="post-go面经" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/03/06/go%E9%9D%A2%E7%BB%8F/">go面经</a>
+    </h1>
+  
+
+        
+        <a href="/2021/03/06/go%E9%9D%A2%E7%BB%8F/" class="archive-article-date">
+  	<time datetime="2021-03-06T10:53:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-03-06</time>
+</a>
+        <!-- 需要添加的位置 -->
+        <!-- 开始添加字数统计-->
+        
+        <!-- 添加完成 -->
+
+        
+           
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="Go相关"><a href="#Go相关" class="headerlink" title="Go相关"></a>Go相关</h2><h3 id="new和make"><a href="#new和make" class="headerlink" title="new和make"></a>new和make</h3><p><strong>new()</strong></p>
+<p>该方法的参数要求传入一个类型，而不是一个值，<strong>它会申请一个该类型大小的内存空间，并会初始化为对应的零值</strong>，返回指向该内存空间的一个指针。</p>
+<p><strong>make()</strong></p>
+<p>make也是用于内存分配，但是和new不同，它只用于slice、map和channel的内存创建，它返回的类型就是类型本身，而不是它们的指针类型。</p>
+<h3 id="Printf-、Sprintf-、Fprintf-函数的区别用法"><a href="#Printf-、Sprintf-、Fprintf-函数的区别用法" class="headerlink" title="Printf()、Sprintf()、Fprintf()函数的区别用法"></a>Printf()、Sprintf()、Fprintf()函数的区别用法</h3><p>都是把格式好的字符串输出，只是输出的目标不一样：<br><strong>1.Printf()：</strong>是把格式字符串输出到标准输出（一般是屏幕，可以重定向）。Printf() 是和标准输出文件(stdout)关联的,Fprintf 则没有这个限制.</p>
+<p><strong>2.Sprintf()：</strong>是把格式字符串输出到指定字符串中，所以参数比printf多一个。那就是目标字符串地址</p>
+<p><strong>3.Fprintf()：</strong>是把格式字符串输出到指定文件设备中，所以参数笔printf多一个文件指针FILE。主要用于文件操作。Fprintf()是格式化输出到一个stream，通常是到文件。 </p>
+<h3 id="数组和切片的区别"><a href="#数组和切片的区别" class="headerlink" title="数组和切片的区别"></a>数组和切片的区别</h3><p><strong>(1)数组</strong> 数组是具有固定长度且拥有零个或者多个相同数据类型元素的序列。 数组的长度是数组类型的一部分，所以[3]int 和 [4]int 是两种不同的数组类型。<br>数组需要指定大小，不指定也会根据初始化的自动推算出大小，不可改变 ;<br>数组是值传递;<br>数组是内置(build-in)类型,是一组同类型数据的集合，它是值类型，通过从0开始的下标索引访问元素值。在初始化后长度是固定的，无法修改其长度。当作为方法的参数传入时将复制一份数组而不是引用同一指针。数组的长度也是其类型的一部分，通过内置函数len(array)获取其长度。<br>数组定义：<br>var array [10]int<br>var array = [5]int{1,2,3,4,5}</p>
+<p><strong>(2)切片</strong> 切片表示一个拥有相同类型元素的可变长度的序列。 切片是一种轻量级的数据结构，它有三个属性：指针、长度和容量。<br>切片不需要指定大小;<br>切片是地址传递;<br>切片可以通过数组来初始化，也可以通过内置函数make()初始化 .初始化时len=cap,在追加元素时如果容量cap不足时将按len的2倍扩容；<br>切片定义：<br>var slice []type = make([]type, len) </p>
+<h3 id="协程"><a href="#协程" class="headerlink" title="协程"></a>协程</h3><p>协程和线程都可以实现程序的并发执行；<br>通过channel来进行协程间的通信；<br>只需要在函数调用前添加go关键字即可实现go的协程，创建并发任务；<br>关键字go并非执行并发任务，而是创建一个并发任务单元； </p>
+<h3 id="go中没有隐藏的this指针，什么意思"><a href="#go中没有隐藏的this指针，什么意思" class="headerlink" title="go中没有隐藏的this指针，什么意思"></a>go中没有隐藏的this指针，什么意思</h3><p><strong>方法施加的对象显式传递，没有被隐藏起来</strong><br>golang的面向对象表达更直观，对于面向过程只是换了一种语法形式来表达<br><strong>方法施加的对象不需要非得是指针，也不用非得叫this</strong> </p>
+<h3 id="go中引用类型包含哪些"><a href="#go中引用类型包含哪些" class="headerlink" title="go中引用类型包含哪些"></a>go中引用类型包含哪些</h3><p> 数组切片、字典(map)、通道（channel）、接口（interface） </p>
+<h3 id="go中的指针运算"><a href="#go中的指针运算" class="headerlink" title="go中的指针运算"></a>go中的指针运算</h3><ul>
+<li>可以通过<code>&amp;</code>取指针的地址</li>
+<li>可以通过<code>*</code>取指针指向的数据</li>
+</ul>
+<h3 id="go中的main函数"><a href="#go中的main函数" class="headerlink" title="go中的main函数"></a>go中的main函数</h3><ul>
+<li>main函数不能带参数</li>
+<li>main函数不能定义返回值</li>
+<li>main函数所在的包必须为main包</li>
+<li>main函数中可以使用flag包来获取和解析命令行参数</li>
+</ul>
+<h3 id="go的读写锁和互斥锁"><a href="#go的读写锁和互斥锁" class="headerlink" title="go的读写锁和互斥锁"></a>go的读写锁和互斥锁</h3><p><strong>互斥锁Mutex：</strong></p>
+<p>互斥锁的应用场景通常是写大于读操作的，它不同于读写锁的读者随意访问，而写者只有一个。它代表的资源就是一个，不管是读者还是写者，只要谁拥有了它，那么其他人就只有等待解锁后才可以。</p>
+<p><strong>读写锁RWMutex：</strong></p>
+<p>读写锁实际是一种特殊的自旋锁。写者是排他性的，一个读写锁同时只能有一个写者或多个读者（与CPU数相关），但不能同时既有读者又有写者。在读写锁保持期间也是抢占失效的。针对于系统中需要读多写少的情况下，我们就需要使用到读写锁进行应对程序的并发，保护程序的安全、稳定、高效的运行。</p>
+<h3 id="go的channel特性"><a href="#go的channel特性" class="headerlink" title="go的channel特性"></a>go的channel特性</h3><ul>
+<li>A. 给一个 nil channel 发送数据，造成永远阻塞</li>
+<li>B. 从一个 nil channel 接收数据，造成永远阻塞</li>
+<li>C. 给一个已经关闭的 channel 发送数据，引起 panic</li>
+<li>D. 从一个已经关闭的 channel 接收数据，如果缓冲区中为空，则返回一个零值</li>
+<li>E. 无缓冲的channel是同步的，而有缓冲的channel是非同步的</li>
+</ul>
+<p><img src="/2021/03/06/go%E9%9D%A2%E7%BB%8F/1614947056901.png" alt="1614947056901"></p>
+<h3 id="go触发异常的场景"><a href="#go触发异常的场景" class="headerlink" title="go触发异常的场景"></a>go触发异常的场景</h3><ul>
+<li>A. 空指针解析</li>
+<li>B. 下标越界</li>
+<li>C. 除数为0</li>
+<li>D. 调用panic函数</li>
+</ul>
+<h3 id="go的select机制"><a href="#go的select机制" class="headerlink" title="go的select机制"></a>go的select机制</h3><p>1.go的select语句是一种仅能用于channl发送和接收消息的专用语句，此语句运行期间是阻塞的；当select中没有case语句的时候，会阻塞当前goroutine。</p>
+<p>2.select是golang在语言层面提供的I/O多路复用的机制，其专门用来检测多个channel是否准备完毕：可读或可写。</p>
+<p>3.select语句中除default外，每个case操作一个channel，要么读要么写</p>
+<p>4.select语句中除default外，各case执行顺序是随机的</p>
+<p>5.select语句中如果没有default语句，则会阻塞等待任一case</p>
+<p>6.select语句中读操作要判断是否成功读取，关闭的channel也可以读取</p>
+<h3 id="进程，线程，协程之间的区别"><a href="#进程，线程，协程之间的区别" class="headerlink" title="进程，线程，协程之间的区别"></a>进程，线程，协程之间的区别</h3><p>进程是资源的分配和调度的一个独立单元，而线程是CPU调度的基本单元；</p>
+<p>同一个进程中可以包括多个线程；<br>进程结束后它拥有的所有线程都将销毁，而线程的结束不会影响同个进程中的其他线程的结束；<br>线程共享整个进程的资源（寄存器、堆栈、上下文），<strong>一个进程至少包括一个线程</strong>；<br>线程中执行时一般都要进行同步和互斥，因为他们共享同一进程的所有资源；</p>
+<p><strong>进程是资源分配的单位</strong><br><strong>线程是操作系统调度的单位</strong></p>
+<p>需要资源由大到小，效率由高到低：<strong>进程切换—&gt;线程切换—&gt;协程切换</strong></p>
+<p>进程拥有自己独立的堆和栈，既不共享堆，亦不共享栈，进程由操作系统调度。（全局变量保存在堆中，局部变量及函数保存在栈中）<br>线程拥有自己独立的栈和共享的堆，共享堆，不共享栈，线程亦由操作系统调度(标准线程是这样的)。<br><strong>协程和线程一样共享堆，不共享栈，协程由程序员在协程的代码里显示调度。</strong> </p>
+<p> <strong>一个应用程序一般对应一个进程，一个进程一般有一个主线程，还有若干个辅助线程，线程之间是平行运行的，在线程里面可以开启协程，让程序在特定的时间内运行。</strong>  </p>
+<p>协程和线程的区别是：协程避免了无意义的调度，由此可以提高性能，但也因此，程序员必须自己承担调度的责任，同时，协程也失去了标准线程使用多CPU的能力。</p>
+<h3 id="GMP模型"><a href="#GMP模型" class="headerlink" title="GMP模型"></a>GMP模型</h3><p><strong>M结构是Machine，系统线程</strong>：它由操作系统管理，goroutine就是跑在M之上的；M是一个很大的结构，里面维护小对象内存cache（mcache）、当前执行的goroutine、随机数发生器等等非常多的信息</p>
+<p><strong>P结构是Processor，处理器</strong>：它的主要用途就是用来执行goroutine，它维护了一个goroutine队列，即runqueue。Processor的让我们从N:1调度到M:N调度的重要部分。</p>
+<p><strong>G是goroutine实现的核心结构</strong>：它包含了栈，指令指针，以及其他对调度goroutine很重要的信息，例如其阻塞的channel。</p>
+<p>所有的goroutine运行在同一个M系统线程中，每一个M系统线程维护一个Processor，任何时刻，一个Processor中只有一个goroutine，其他goroutine在runqueue中等待。一个goroutine运行完自己的时间片后，让出上下文，回到runqueue中。 多核处理器的场景下，为了运行goroutines，每个M系统线程会持有一个Processor。</p>
+<p>如果两个M都在一个CPU上运行，这就是并发；如果两个M在不同的CPU上运行，这就是并行。在正常情况下，当一个G（goroutine）的时间片结束后将P（Processor）分配给下一个G，但是线程会发生阻塞等情况。</p>
+<p>当正在运行的goroutine（G0）阻塞的时候，例如进行系统调用，会再创建一个系统线程（M1)，当前的M0线程放弃了它的Processor（P），P转到新的线程中去运行。 </p>
+<h3 id="golang的GC原理"><a href="#golang的GC原理" class="headerlink" title="golang的GC原理"></a>golang的GC原理</h3><blockquote>
+<p>golang中的gc采用三色标记法。 </p>
+</blockquote>
+<p> <strong>三色标记法：</strong></p>
+<p>属于标记清除法的一个改进版。起初所有内存对象都在白色的，从根出发标记所有的对象，标记为灰色，并放入 一个队列。然后再将灰色队列中的对象取出，将其引用对象标记为黑色。重复此步骤，待灰色对象队列为空时，所有白色对象既为垃圾。最后白色区域内存对象被释放，黑色区域标记为白色，等待下一阶段GC再次扫描。 </p>
+<p> <strong>三色标记法触发有两个条件：</strong></p>
+<p>第一个是阀值，就是内存扩大一倍时启动GC。第二个是每隔两分钟GC一次。 </p>
+<p><strong>具体过程：</strong></p>
+<ol>
+<li>首先创建三个集合：白、灰、黑。</li>
+<li>将所有对象放入白色集合中。</li>
+<li>然后从根节点开始遍历所有对象（注意这里并不递归遍历），把遍历到的对象从白色集合放入灰色集合。</li>
+<li>之后遍历灰色集合，将灰色对象引用的对象从白色集合放入灰色集合，之后将此灰色对象放入黑色集合</li>
+<li>重复 4 直到灰色中无任何对象</li>
+<li>通过write-barrier检测对象有变化，重复以上操作</li>
+<li>收集所有白色对象（垃圾）</li>
+</ol>
+<h3 id="golang各类型底层实现"><a href="#golang各类型底层实现" class="headerlink" title="golang各类型底层实现"></a>golang各类型底层实现</h3><h4 id="string"><a href="#string" class="headerlink" title="string"></a>string</h4><blockquote>
+<p>string类型的底层是一个C struct</p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">String</span></span></span><br><span class="line"><span class="class">&#123;</span></span><br><span class="line">        byte*   str;</span><br><span class="line">        intgo   len;</span><br><span class="line">&#125;;</span><br><span class="line"> type stringStruct <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">   str unsafe.Pointer</span><br><span class="line">   len <span class="keyword">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>成员str为字符数组，len为字符数组长度。</li>
+<li>golang的字符串是不可变类型，对string类型的变量初始化 意味着会对底层结构的初始化。</li>
+</ul>
+<h4 id="slice"><a href="#slice" class="headerlink" title="slice"></a>slice</h4><blockquote>
+<p>slice类型的底层同样是一个C struct </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">Slice</span></span></span><br><span class="line"><span class="class">&#123;</span>               <span class="comment">// must not move anything</span></span><br><span class="line">    byte*   <span class="built_in">array</span>;      <span class="comment">// actual data</span></span><br><span class="line">    uintgo  len;        <span class="comment">// number of elements</span></span><br><span class="line">    uintgo  cap;        <span class="comment">// allocated number of elements</span></span><br><span class="line">&#125;;</span><br><span class="line">type slice <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line"> <span class="built_in">array</span> unsafe.Pointer</span><br><span class="line"> len   <span class="keyword">int</span></span><br><span class="line"> cap   <span class="keyword">int</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>包括三个成员。array为底层数组，len为实际存放的个数，cap为总容量。</li>
+<li>使用内建函数make对slice进行初始化，也可以类似于数组的方式进行初始化。当使用make函数来对slice进行初始化时，第一个参数为切片类型，第二个参数为len，第三个参数可选，如果不传入，则cap等于len。通常传入cap参数来预先分配大小的slice，避免频繁重新分配内存。</li>
+</ul>
+<h4 id="接口类型"><a href="#接口类型" class="headerlink" title="接口类型"></a>接口类型</h4><p> 在$GOROOT/src/runtime/runtime2.h中定义了： </p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Iface</span> &#123;</span></span><br><span class="line">    Itab*   tab;</span><br><span class="line">    <span class="keyword">void</span>*   data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Eface</span> &#123;</span></span><br><span class="line">    Type*   type;</span><br><span class="line">    <span class="keyword">void</span>*   data;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span>  <span class="title">Itab</span> &#123;</span></span><br><span class="line">    InterfaceType*  inter;</span><br><span class="line">    Type*   type;</span><br><span class="line">    Itab*   link;</span><br><span class="line">    int32   bad;</span><br><span class="line">    int32   unused;</span><br><span class="line">    <span class="keyword">void</span>    (*fun[])(<span class="keyword">void</span>);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>interface实际上是一个结构体，包括两个成员，一个是指向数据的指针，一个包含了成员的类型信息。</li>
+<li>Eface是interface{}底层使用的数据结构。因为interface中保存了类型信息，所以可以实现反射。反射其实就是查找底层数据结构的元数据。</li>
+</ul>
+<h4 id="map类型"><a href="#map类型" class="headerlink" title="map类型"></a>map类型</h4><blockquote>
+<p> golang的map实现是hashtable，源码在：$GOROOT/src/runtime/hashmap.go  </p>
+</blockquote>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">type hmap <span class="class"><span class="keyword">struct</span> &#123;</span></span><br><span class="line">  <span class="comment">// Note: the format of the Hmap is encoded in ../../cmd/internal/gc/reflect.go and</span></span><br><span class="line">  <span class="comment">// ../reflect/type.go. Don&#x27;t change this structure without also changing that code!</span></span><br><span class="line"> count     <span class="keyword">int</span> <span class="comment">// # live cells == size of map.  Must be first (used by len() builtin)</span></span><br><span class="line"> flags     uint8</span><br><span class="line"> B         uint8  <span class="comment">// log_2 of # of buckets (can hold up to loadFactor * 2^B items)</span></span><br><span class="line"> noverflow uint16 <span class="comment">// approximate number of overflow buckets; see incrnoverflow for details</span></span><br><span class="line"> hash0     uint32 <span class="comment">// hash seed</span></span><br><span class="line"> </span><br><span class="line"> buckets    unsafe.Pointer <span class="comment">// array of 2^B Buckets. may be nil if count==0.</span></span><br><span class="line"> oldbuckets unsafe.Pointer <span class="comment">// previous bucket array of half the size, non-nil only when growing</span></span><br><span class="line"> nevacuate  uintptr        <span class="comment">// progress counter for evacuation (buckets less than this have been evacuated)</span></span><br><span class="line"></span><br><span class="line"> extra *mapextra <span class="comment">// optional fields</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="在浏览器中输入url地址到显示主页的过程"><a href="#在浏览器中输入url地址到显示主页的过程" class="headerlink" title="在浏览器中输入url地址到显示主页的过程"></a>在浏览器中输入url地址到显示主页的过程</h3><ol>
+<li><p>DNS解析</p>
+</li>
+<li><p>TCP连接</p>
+</li>
+<li><p>浏览器向Web服务器发送HTTP请求</p>
+</li>
+<li><p>服务器处理请求并返回HTTP报文</p>
+</li>
+<li><p>浏览器解析渲染页面</p>
+</li>
+<li><p>连接结束</p>
+</li>
+</ol>
+<h3 id="状态码"><a href="#状态码" class="headerlink" title="状态码"></a>状态码</h3><p><img src="/2021/03/06/go%E9%9D%A2%E7%BB%8F/1614933991140.png" alt="1614933991140"></p>
+<p><strong>常见状态码：</strong></p>
+<ul>
+<li>100: 请求者应当继续提出请求。</li>
+<li>101(切换协议) 请求者已要求服务器切换协议，服务器已确认并准备进行切换。</li>
+<li>200：正确的请求返回正确的结果</li>
+<li>201：表示资源被正确的创建。比如说，我们 POST 用户名、密码正确创建了一个用户就可以返回 201。</li>
+<li>202：请求是正确的，但是结果正在处理中，这时候客户端可以通过轮询等机制继续请求。</li>
+<li>300：请求成功，但结果有多种选择。</li>
+<li>301：请求成功，但是资源被永久转移。</li>
+<li>303：使用 GET 来访问新的地址来获取资源。</li>
+<li>304：请求的资源并没有被修改过</li>
+<li>400：请求出现错误，比如请求头不对等。</li>
+<li>401：没有提供认证信息。请求的时候没有带上 Token 等。</li>
+<li>402：为以后需要所保留的状态码。</li>
+<li>403：请求的资源不允许访问。就是说没有权限。</li>
+<li>404：请求的内容不存在。</li>
+<li>500：服务器错误。</li>
+<li>501：请求还没有被实现。</li>
+</ul>
+<h3 id="Cookie和Session"><a href="#Cookie和Session" class="headerlink" title="Cookie和Session"></a>Cookie和Session</h3><p> Cookie 数据保存在客户端(浏览器端)，Session 数据保存在服务器端。相对来说 Session 安全性更⾼。 </p>
+<p> Cookie ⼀般⽤来保存⽤户信息 ⽐如①我们在 Cookie 中保存已经登录过得⽤户信息，下次访问⽹站的时候⻚⾯可 以⾃动帮你登录的⼀些基本信息给填了；②⼀般的⽹站都会有保持登录也就是说下次你再访问⽹站的时候就不需要重新登录了，**这是因为用户登录的时候我们可以存放了⼀个 Token 在 Cookie 中，下次登录的时候只需要根据Token 值来查找用户即可(为了安全考虑，重新登录⼀般要将 Token 重写)**；③登录⼀次⽹站后访问⽹站其他⻚⾯不需要重新登录。</p>
+<p> Session 的主要作⽤就是通过服务端记录⽤户的状态。 典型的场景是购物⻋，当你要添加商品到购物⻋的时候，系统不知道是哪个⽤户操作的，因为 HTTP 协议是⽆状态的。服务端给特定的⽤户创建特定的 Session 之后就可以标识这个⽤户并且跟踪这个⽤户了。 </p>
+<h3 id="HTTP1-0和HTTP1-1的主要区别"><a href="#HTTP1-0和HTTP1-1的主要区别" class="headerlink" title="HTTP1.0和HTTP1.1的主要区别"></a>HTTP1.0和HTTP1.1的主要区别</h3><ol>
+<li><strong>缓存处理</strong>，在HTTP1.0中主要使用header里的If-Modified-Since,Expires来做为缓存判断的标准，==HTTP1.1则引入了更多的缓存控制策略==例如Entity tag，If-Unmodified-Since, If-Match, If-None-Match等更多可供选择的缓存头来控制缓存策略。</li>
+<li><strong>带宽优化及网络连接的使用</strong>，==HTTP1.0中，存在一些浪费带宽的现象==，例如客户端只是需要某个对象的一部分，而服务器却将整个对象送过来了，并且==不支持断点续传功能==，==HTTP1.1则在请求头引入了range头域，它允许只请求资源的某个部分==，即返回码是206（Partial Content），这样就方便了开发者自由的选择以便于充分利用带宽和连接。</li>
+<li><strong>错误通知的管理</strong>，==在HTTP1.1中新增了24个错误状态响应码==，如409（Conflict）表示请求的资源与资源的当前状态发生冲突；410（Gone）表示服务器上的某个资源被永久性的删除。</li>
+<li><strong>Host头处理</strong>，在==HTTP1.0中认为每台服务器都绑定一个唯一的IP地址，因此，请求消息中的URL并没有传递主机名（hostname）==。但随着虚拟主机技术的发展，在一台物理服务器上可以存在多个虚拟主机（Multi-homed Web Servers），并且它们共享一个IP地址。==HTTP1.1的请求消息和响应消息都应支持Host头域==，且请求消息中如果没有Host头域会报告一个错误（400 Bad Request）。</li>
+<li><strong>长连接</strong>，==HTTP 1.1支持长连接（PersistentConnection）和请求的流水线（Pipelining）处理==，在一个TCP连接上可以传送多个HTTP请求和响应，减少了建立和关闭连接的消耗和延迟，在HTTP1.1中默认开启Connection： keep-alive，一定程度上弥补了HTTP1.0每次请求都要创建连接的缺点。</li>
+</ol>
+<h3 id="HTTP2-0和HTTP1-X相比的新特性"><a href="#HTTP2-0和HTTP1-X相比的新特性" class="headerlink" title="HTTP2.0和HTTP1.X相比的新特性"></a>HTTP2.0和HTTP1.X相比的新特性</h3><ul>
+<li><strong>新的二进制格式</strong>（Binary Format），HTTP1.x的解析是基于文本。基于文本协议的格式解析存在天然缺陷，文本的表现形式有多样性，要做到健壮性考虑的场景必然很多，二进制则不同，只认0和1的组合。基于这种考虑HTTP2.0的协议解析决定采用二进制格式，实现方便且健壮。</li>
+<li><strong>多路复用</strong>（MultiPlexing），即连接共享，即每一个request都是是用作连接共享机制的。一个request对应一个id，这样一个连接上可以有多个request，每个连接的request可以随机的混杂在一起，接收方可以根据request的 id将request再归属到各自不同的服务端请求里面。</li>
+<li><strong>header压缩</strong>，如上文中所言，对前面提到过HTTP1.x的header带有大量信息，而且每次都要重复发送，HTTP2.0使用encoder来减少需要传输的header大小，通讯双方各自cache一份header fields表，既避免了重复header的传输，又减小了需要传输的大小。</li>
+<li><strong>服务端推送</strong>（server push），同SPDY一样，HTTP2.0也具有server push功能。</li>
+</ul>
+<h3 id="HTTP与HTTPS"><a href="#HTTP与HTTPS" class="headerlink" title="HTTP与HTTPS"></a>HTTP与HTTPS</h3><ol>
+<li>HTTPS协议需要到CA申请证书，一般免费证书很少，需要交费。</li>
+<li>HTTP协议运行在TCP之上，所有传输的内容都是明文，HTTPS运行在SSL/TLS之上，SSL/TLS运行在TCP之上，所有传输的内容都经过加密的。</li>
+<li>HTTP和HTTPS使用的是==完全不同的连接方式，用的端口也不一样，前者是80，后者是443==。</li>
+<li>HTTPS可以有效的防止运营商劫持，解决了防劫持的一个大问题。</li>
+</ol>
+<p>  <img src="/2021/03/06/go%E9%9D%A2%E7%BB%8F/640.png" alt="图片"> </p>
+<h3 id="URI和URL的区别"><a href="#URI和URL的区别" class="headerlink" title="URI和URL的区别"></a>URI和URL的区别</h3><ul>
+<li><p><strong>URI(Uniform Resource Identifier)</strong> 是统⼀资源标志符，可以唯⼀标识⼀个资源。 </p>
+</li>
+<li><p><strong>URL(Uniform Resource Location)</strong> 是统⼀资源定位符，可以提供该资源的路径。它是⼀种具体 的 URI，即 URL 可以⽤来标识⼀个资源，⽽且还指明了如何 locate 这个资源。 </p>
+<p>URI的作⽤像身份证号⼀样，URL的作⽤更像家庭住址⼀样。URL是⼀种具体的URI，它不仅唯⼀标识资源，⽽且  还提供了定位该资源的信息。 </p>
+</li>
+</ul>
+
+      
+      
+
+  <div class="declare" hidden="hidden"></div>
+  
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">go面经</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/后端/go//" class="article-tag-list-link color3">go</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2021/03/06/go%E9%9D%A2%E7%BB%8F/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-Spring-Cloud" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -900,107 +1163,6 @@
 
 
   
-    <article id="post-Spring" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2021/02/07/Spring/">Spring</a>
-    </h1>
-  
-
-        
-        <a href="/2021/02/07/Spring/" class="archive-article-date">
-  	<time datetime="2021-02-07T12:47:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2021-02-07</time>
-</a>
-        <!-- 需要添加的位置 -->
-        <!-- 开始添加字数统计-->
-        
-        <!-- 添加完成 -->
-
-        
-           
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Spring简介和配置"><a href="#Spring简介和配置" class="headerlink" title="Spring简介和配置"></a>Spring简介和配置</h1><h2 id="1-spring概述"><a href="#1-spring概述" class="headerlink" title="1. spring概述"></a>1. spring概述</h2><h3 id="1-1-Spring是什么（理解）"><a href="#1-1-Spring是什么（理解）" class="headerlink" title="1.1 Spring是什么（理解）"></a>1.1 Spring是什么（理解）</h3><p>Spring是分层的 Java SE/EE应用 full-stack 轻量级开源框架，以 IoC（Inverse Of Control：反转控制）和 AOP（Aspect Oriented Programming：面向切面编程）为内核。</p>
-<p>提供了展现层 SpringMVC和持久层 Spring JDBCTemplate以及业务层事务管理等众多的企业级应用技术，还能整合开源世界众多著名的第三方框架和类库，逐渐成为使用最多的Java EE 企业应用开源框架</p>
-        
-          <a class="article-more-a" href="/2021/02/07/Spring/#more">more >></a>
-        
-      
-      
-
-  <div class="declare" hidden="hidden"></div>
-  
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端//" class="article-tag-list-link color3">后端</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/后端/Java//" class="article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2021/02/07/Spring/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/">Next &amp;raquo;</a>
@@ -1181,6 +1343,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">Spring-Cloud</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">go面经</a>
               </li>
             
             <div class="clearfix"></div>
